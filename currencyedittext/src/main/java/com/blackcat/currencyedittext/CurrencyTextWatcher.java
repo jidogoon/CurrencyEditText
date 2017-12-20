@@ -52,7 +52,13 @@ class CurrencyTextWatcher implements TextWatcher {
                 textToDisplay = CurrencyTextFormatter.formatText(newText, editText.getLocale(), editText.getDefaultLocale(), editText.getDecimalDigits());
             }
             catch(IllegalArgumentException exception){
-                textToDisplay = lastGoodInput;
+                if(newText.equals("")){
+                    editText.setRawValue(0);
+                    textToDisplay = "";
+                }
+                else {
+                    textToDisplay = lastGoodInput;
+                }
             }
 
             editText.setText(textToDisplay);
