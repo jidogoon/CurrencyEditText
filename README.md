@@ -15,23 +15,11 @@ Getting started is easy. Just add the library as a dependency in your projects b
 
 ```Gradle
 repositories {
-    mavenCentral()
+    jcenter()
 }
         
 dependencies{
-    compile 'com.github.blackcat27:library:2.0.2-SNAPSHOT'
-}
-```
-        
-Alternatively, if you're having issues with mavenCentral, try JitPack:
-
-```Gradle
-repositories{
-    maven { url "https://jitpack.io" }
-}
-        
-dependencies {
-    compile 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+    implementation 'com.jidogoon:CurrencyEditText:0.0.1'
 }
 ```
 
