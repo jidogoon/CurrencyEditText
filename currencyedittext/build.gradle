@@ -1,4 +1,14 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'jidogoon'
+    groupId = 'com.jidogoon'
+    artifactId = 'CurrencyEditText'
+    publishVersion = '0.0.1'
+    desc = 'fork from CurrencyEditText by BlacKCaT27'
+    website = 'https://github.com/jidogoon/CurrencyEditText'
+}
 
 android {
     compileSdkVersion 27
@@ -18,12 +28,13 @@ android {
         }
     }
     sourceSets { main { java.srcDirs = ['src/main/java'] } }
+    lintOptions {
+        abortOnError false
+    }
 }
 repositories {
     mavenCentral()
     jcenter()
 }
 
-
-apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
 
