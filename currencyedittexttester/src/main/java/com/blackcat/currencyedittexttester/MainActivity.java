@@ -64,6 +64,8 @@ public class MainActivity extends Activity {
 
         configureTestableLocalesTool();
         configureDecimalDigitsTool();
+
+        //cet.hideUnitSymbol();
     }
 
     @OnClick(R.id.cet_reset_button)

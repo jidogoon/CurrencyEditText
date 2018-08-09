@@ -4,6 +4,7 @@ package com.blackcat.currencyedittext;
 import android.util.Log;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -12,14 +13,14 @@ public final class CurrencyTextFormatter {
     private CurrencyTextFormatter(){}
 
     public static String formatText(String val, Locale locale){
-        return formatText(val, locale, Locale.US, null);
+        return formatText(val, locale, Locale.US, null, false);
     }
 
     public static String formatText(String val, Locale locale, Locale defaultLocale){
-        return formatText(val, locale, defaultLocale, null);
+        return formatText(val, locale, defaultLocale, null, false);
     }
 
-    public static String formatText(String val, Locale locale, Locale defaultLocale, Integer decimalDigits){
+    public static String formatText(String val, Locale locale, Locale defaultLocale, Integer decimalDigits, boolean hideSymbol){
         //special case for the start of a negative number
         if(val.equals("-")) return val;
 
@@ -80,6 +81,13 @@ public final class CurrencyTextFormatter {
 
             //finally, do the actual formatting
             currencyFormatter.setMinimumFractionDigits(currencyDecimalDigits);
+
+            if (hideSymbol) {
+                DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                symbols.setCurrencySymbol("");
+                currencyFormatter.setDecimalFormatSymbols(symbols);
+            }
+
             val = currencyFormatter.format(newTextValue);
         }
         else {

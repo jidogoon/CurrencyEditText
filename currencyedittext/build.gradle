@@ -5,7 +5,7 @@ publish {
     userOrg = 'jidogoon'
     groupId = 'com.jidogoon'
     artifactId = 'CurrencyEditText'
-    publishVersion = '0.0.1'
+    publishVersion = '0.0.2'
     desc = 'fork from CurrencyEditText by BlacKCaT27'
     website = 'https://github.com/jidogoon/CurrencyEditText'
 }
@@ -18,7 +18,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 27
         versionCode 202
-        versionName "2.0.2"
+        versionName "0.0.2"
     }
 
     buildTypes {

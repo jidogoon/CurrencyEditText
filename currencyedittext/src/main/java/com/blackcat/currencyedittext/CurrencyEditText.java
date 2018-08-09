@@ -26,6 +26,8 @@ public class CurrencyEditText extends EditText {
 
     private int decimalDigits = 0;
 
+    private boolean hideUnitSymbol = false;
+
     /*
     PUBLIC METHODS
      */
@@ -202,6 +204,15 @@ public class CurrencyEditText extends EditText {
         return format(rawVal);
     }
 
+    public void hideUnitSymbol() {
+        hideUnitSymbol = true;
+        refreshView();
+    }
+
+    public boolean isHideUnitSymbol() {
+        return hideUnitSymbol;
+    }
+
     /*
     PRIVATE HELPER METHODS
      */
@@ -212,11 +223,11 @@ public class CurrencyEditText extends EditText {
     }
 
     private String format(long val){
-        return CurrencyTextFormatter.formatText(String.valueOf(val), currentLocale, defaultLocale, decimalDigits);
+        return CurrencyTextFormatter.formatText(String.valueOf(val), currentLocale, defaultLocale, decimalDigits, hideUnitSymbol);
     }
 
     private String format(String val){
-        return CurrencyTextFormatter.formatText(val, currentLocale, defaultLocale, decimalDigits);
+        return CurrencyTextFormatter.formatText(val, currentLocale, defaultLocale, decimalDigits, hideUnitSymbol);
     }
 
     private void init(){
@@ -254,20 +265,21 @@ public class CurrencyEditText extends EditText {
     }
 
     private String getDefaultHintValue() {
-        try {
-            return Currency.getInstance(currentLocale).getSymbol();
-        }
-        catch(Exception e){
-            Log.w("CurrencyEditText", String.format("An error occurred while getting currency symbol for hint using locale '%s', falling back to defaultLocale", currentLocale));
-            try{
-                return Currency.getInstance(defaultLocale).getSymbol();
-            }
-            catch(Exception e1){
-                Log.w("CurrencyEditText", String.format("An error occurred while getting currency symbol for hint using default locale '%s', falling back to USD", defaultLocale));
-                return Currency.getInstance(Locale.US).getSymbol();
-            }
-
-        }
+        return "";
+//        try {
+//            return Currency.getInstance(currentLocale).getSymbol();
+//        }
+//        catch(Exception e){
+//            Log.w("CurrencyEditText", String.format("An error occurred while getting currency symbol for hint using locale '%s', falling back to defaultLocale", currentLocale));
+//            try{
+//                return Currency.getInstance(defaultLocale).getSymbol();
+//            }
+//            catch(Exception e1){
+//                Log.w("CurrencyEditText", String.format("An error occurred while getting currency symbol for hint using default locale '%s', falling back to USD", defaultLocale));
+//                return Currency.getInstance(Locale.US).getSymbol();
+//            }
+//
+//        }
     }
 
     private Locale retrieveLocale(){
